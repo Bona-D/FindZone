@@ -1,6 +1,6 @@
 from cgitb import html
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -72,9 +72,10 @@ def home(request):
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q) |
         Q(name__icontains=q) |
-        Q(description__icontains=q)
+        Q(description__icontains=q)|
+        Q(complete__icontains=q)
     )
-
+    
     topics = Topic.objects.all()[0:5]
     room_count = rooms.count()
     room_messages = Message.objects.filter(Q(room__topic__name__icontains=q))
@@ -99,7 +100,7 @@ def room(request, pk):
 
     context = {'room': room, 'room_messages': room_messages, 'participants':participants}
     return render(request, 'base/room.html', context) 
-
+@login_required(login_url='login')
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all()
@@ -197,4 +198,21 @@ def topicsPage(request):
 def activityPage(request):
     room_messages = Message.objects.all()
     return render(request, 'base/activity.html', {'room_messages': room_messages})
+
+@login_required(login_url='login')
+def endPost(request,u_pk,pk):
+    msg=""
+    room=Room.objects.get(id=pk)
+    
+    if request.user != room.host:
+        msg='You are not allowed here!!'
+        
+        return JsonResponse({'msg':msg,'status':"error","state":200})
+    else:
+        room.complete=False
+        room.save()
+        print(room.complete)
+        msg="End the post"
+        return JsonResponse({'msg':msg,'status':"success","state":200})
+    
 

@@ -1,5 +1,5 @@
 {% extends 'main.html' %} 
-
+{% load static%}
 {% block content %}
   <main class="profile-page layout layout--3">
     <div class="container">
@@ -38,7 +38,7 @@
             </h2>
           </div>
         </div>
-        {% include 'base/feed_component.html' %}
+        {% include 'base/feed_components_profile.html' %}
 
       </div>
       <!-- Room List End -->
@@ -48,4 +48,7 @@
       <!-- Activities End -->
     </div>
   </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="{% static 'js/room_action.js' %}"></script>
+
 {% endblock content %}

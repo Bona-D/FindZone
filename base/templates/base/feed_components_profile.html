@@ -1,6 +1,6 @@
 
 {% for room in rooms %}
-{% if room.complete%}
+
 <div class="roomListRoom">
 <div class="roomListRoom__header">
     <a href="{% url 'user-profile' room.host.id %}" class="roomListRoom__author">
@@ -35,10 +35,12 @@
     </svg>
     {{room.participants.all.count}} Views
     </a>
-  
+    {% if room.complete%}
+    <a class=" btn btn--dark" id="id_{{room.id}}"  onclick="completeTask('{{user.id}}','{{room.id}}')">Complete</a>
+    {%endif%}
     <p class="roomListRoom__topic">{{room.topic.name}}</p>
     
 </div>
 </div>
-{%endif%}
+
 {% endfor %}
