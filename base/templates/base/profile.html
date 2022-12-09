@@ -7,6 +7,12 @@
       {% include 'base/topics_component.html' %}
       <!-- Topics End -->
 
+
+
+      
+
+
+
       <!-- Room List Start -->
       <div class="roomList">
         <div class="profile">
@@ -15,6 +21,7 @@
               <img src="{{user.avatar.url}}" />
             </div>
           </div>
+
           <div class="profile__info">
             <h3>{{user.username}}</h3>
             <p>@{{user.username}}</p>
@@ -22,12 +29,11 @@
             <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
             {% endif %}
           </div>
+          
           <div class="profile__about">
             <h3>About</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur illo tenetur
-              facilis sunt nemo debitis quisquam hic atque aut? Ducimus alias placeat optio
-              accusamus repudiandae quis ab ex exercitationem rem?
+              I am a Rash Mepal, and I'm 30. I am volunteer on personal consultant for the fed-up people. I'm Consultant of thermology and psychology of Cambridge university since 2019 to present. 
             </p>
           </div>
         </div>
