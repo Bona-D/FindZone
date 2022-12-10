@@ -33,7 +33,7 @@
         d="M12 16c3.859 0 7-3.141 7-7s-3.141-7-7-7c-3.859 0-7 3.141-7 7s3.141 7 7 7zM12 4c2.757 0 5 2.243 5 5s-2.243 5-5 5-5-2.243-5-5c0-2.757 2.243-5 5-5z"
         ></path>
     </svg>
-    {{room.participants.all.count}} Views
+    {{room.participants.all.count}} Comments
     </a>
     {% if room.complete%}
     <a class=" btn btn--dark" id="id_{{room.id}}"  onclick="completeTask('{{user.id}}','{{room.id}}')">Discoverd</a>
